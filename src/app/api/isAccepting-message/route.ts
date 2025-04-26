@@ -1,4 +1,4 @@
-// eslint-disable-next-line no-unused-vars
+
 import dbConnect from "@/lib/dbConnect";
 import UserModel from "@/model/User";
 
@@ -23,9 +23,10 @@ export async function GET(request: Request) {
             isAcceptingMessage : isAcceptingMessage
         }, { status: 200 })   
     } catch (error) {
+        console.log("Error in getting user", error);
         return Response.json({
             success: false,
-            message: "Error in getting user ${error}" ,
+            message: "Error in getting user" ,
             isAcceptingMessage : false
         }, { status: 500 })
     }

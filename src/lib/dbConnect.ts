@@ -1,4 +1,4 @@
-// eslint-disable-next-line no-unused-vars
+
 import mongoose from "mongoose";
 
 type ConnectionObeject = {

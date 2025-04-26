@@ -1,4 +1,4 @@
-// eslint-disable-next-line no-unused-vars
+
 "use client";
 import MessageCard from "@/components/MessageCard";
 import { Button } from "@/components/ui/button";
@@ -156,6 +156,7 @@ const Page = () => {
         });
       })
       .catch((error) => {
+        console.error("Error copying URL", error);
         toast.error("Error copying URL", {
           duration: 2000,
           richColors: true,

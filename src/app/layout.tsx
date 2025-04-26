@@ -1,4 +1,4 @@
-// eslint-disable-next-line no-unused-vars
+
 import "./globals.css";
 import { Inter } from "next/font/google";
 import AuthProvider from "@/context/AuthProvider";

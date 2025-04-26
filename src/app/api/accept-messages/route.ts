@@ -1,4 +1,4 @@
-// eslint-disable-next-line no-unused-vars
+
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]/options";
 import dbConnect from "@/lib/dbConnect";
@@ -60,7 +60,7 @@ export async function POST(request: Request) {
 
 export async function GET(request: Request) {
   await dbConnect();
-
+  console.log("Request", request);
   const session = await getServerSession(authOptions);
   const user: User = session?.user;
   try {

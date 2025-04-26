@@ -1,4 +1,4 @@
-// eslint-disable-next-line no-unused-vars
+
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -11,7 +11,6 @@ import { useRouter } from "next/navigation";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -24,7 +23,7 @@ import { signInSchema } from "@/schemas/signInSchema";
 import { signIn } from "next-auth/react";
 const Page = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
-
+  console.log(setIsSubmitting);
   const router = useRouter();
 
   // zod implementation

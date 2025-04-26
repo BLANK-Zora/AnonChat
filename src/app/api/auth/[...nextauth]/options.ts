@@ -1,10 +1,13 @@
-// eslint-disable-next-line no-unused-vars
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import dbConnect from "@/lib/dbConnect";
 import UserModel from "@/model/User";
-
+import { User } from "next-auth";
+interface Credentials {
+  email: string;
+  password: string;
+}
 export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
@@ -14,31 +17,49 @@ export const authOptions: NextAuthOptions = {
         email: { label: "email", type: "text" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials: any): Promise<any> {
+      
+      async authorize(credentials: Credentials | undefined): Promise<User | null> {
+        if (!credentials) {
+          throw new Error("Credentials are required");
+        }
         await dbConnect();
         try {
-          const user = await UserModel.findOne({
-            email: credentials.email,
-          });
+          const user = await UserModel.findOne(
+            { 
+              email: credentials.email 
+            }
+          ) as 
+          { 
+            _id: { toString: () => string },
+             isVerified: boolean,
+              password: string, 
+              toObject: () => object };
+      
           if (!user) {
             throw new Error("User not found");
           }
           if (!user.isVerified) {
             throw new Error("User not verified");
           }
+      
           const isPasswordCorrect = await bcrypt.compare(
             credentials.password,
             user.password
           );
+      
           if (isPasswordCorrect) {
-            return user;
+            return {
+              ...user.toObject(),
+              _id: user._id.toString(),
+            } as User;
           } else {
             throw new Error("Incorrect password");
           }
-        } catch (err: any) {
-          throw new Error(err);
+        } catch (err) {
+          throw new Error((err as Error).message);
         }
-      },
+      }
+      
     }),
   ],
   pages: {
