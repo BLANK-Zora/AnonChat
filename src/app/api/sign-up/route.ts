@@ -57,7 +57,7 @@ export async function POST(request : Request){
                 messages: []
             })
                   
-            const newsave = await newUser.save();
+            await newUser.save();
             //console.log(newsave);
         }
 

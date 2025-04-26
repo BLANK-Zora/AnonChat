@@ -1,6 +1,5 @@
 import dbConnect from "@/lib/dbConnect";
 import UserModel from "@/model/User";
-import { ApiResponse } from "@/types/apiResponse";
 
 
 export async function GET(request: Request) {
@@ -25,7 +24,7 @@ export async function GET(request: Request) {
     } catch (error) {
         return Response.json({
             success: false,
-            message: "Error in getting user",
+            message: "Error in getting user ${error}" ,
             isAcceptingMessage : false
         }, { status: 500 })
     }
