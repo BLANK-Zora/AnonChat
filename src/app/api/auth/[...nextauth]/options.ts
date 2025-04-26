@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";

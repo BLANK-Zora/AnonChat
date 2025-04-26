@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 "use client";
 import MessageCard from "@/components/MessageCard";
 import { Button } from "@/components/ui/button";

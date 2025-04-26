@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import { google } from "@ai-sdk/google";
 import { generateText } from "ai";
 

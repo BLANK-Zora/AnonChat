@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 'use client';
 
 import { useState, useEffect, useCallback } from "react";

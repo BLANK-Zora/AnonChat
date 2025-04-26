@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import mongoose, {Schema, Document} from "mongoose";
 
 export interface Message extends Document {

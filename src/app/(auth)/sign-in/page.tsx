@@ -1,15 +1,13 @@
+// eslint-disable-next-line no-unused-vars
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { infer as zInfer } from "zod";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { useDebounceCallback } from "usehooks-ts";
+import { useState } from "react";
+
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { signUpSchema } from "@/schemas/signUpSchema";
-import axios, { AxiosError } from "axios";
-import { ApiResponse } from "@/types/apiResponse";
 import {
   Form,
   FormControl,
@@ -24,7 +22,7 @@ import { Button } from "@/components/ui/button";
 import { Loader2, OctagonAlert } from "lucide-react";
 import { signInSchema } from "@/schemas/signInSchema";
 import { signIn } from "next-auth/react";
-const page = () => {
+const Page = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const router = useRouter();
@@ -137,4 +135,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

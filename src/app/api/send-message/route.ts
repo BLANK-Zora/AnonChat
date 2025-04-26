@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import dbConnect from "@/lib/dbConnect";
 import UserModel from "@/model/User";
 import type { Message } from "@/model/User";
