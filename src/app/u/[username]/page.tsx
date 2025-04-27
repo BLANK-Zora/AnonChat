@@ -20,7 +20,7 @@ import { ApiResponse } from "@/types/apiResponse";
 
 const Page = () => {
   const [username, setUsername] = useState("");
-  const [suggestedMessages, setSuggestedMessages] = useState<string[]>();
+
   const FormSchema = z.object({
     Message: z
       .string()
@@ -40,22 +40,6 @@ const Page = () => {
     const extractedUsername = currentUrl.split("/u/").pop() || "";
     setUsername(extractedUsername);
   }, []);
-
-  useEffect(() => {
-    const fetchSuggestedMessages = async () => {
-      try {
-        const response = await axios.get("/api/suggested-message");
-        const text = response.data.text as string;
-        const messagesArray = text.split("||").map(msg => msg.trim()).filter(msg => msg.length > 0);
-        setSuggestedMessages(messagesArray);
-      } catch (error) {
-        console.error("Error fetching suggested messages:", error);
-      }
-    };
-  
-    fetchSuggestedMessages();
-  }, []);
-
 
   const onSubmit = async (data: z.infer<typeof FormSchema>) => {
     try {
@@ -92,7 +76,6 @@ const Page = () => {
   };
 
   return (
-    <>
     <div className="container mx-auto py-8">
       <h1 className="text-2xl font-semibold text-center mb-6">
         Send a Message to {username}
@@ -125,7 +108,6 @@ const Page = () => {
         </form>
       </Form>
     </div>
-    </>
   );
 };
 
