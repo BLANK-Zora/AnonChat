@@ -24,11 +24,11 @@ export async function GET() {
   const userId = new mongoose.Types.ObjectId(user._id);
   try {
     const userWithMessages = await UserModel.aggregate([
-        {$match: {_id: userId}},
-        {$unwind: "$messages"},
-        {$sort: {"messages.createdAt": -1}},
-        {$group: {_id: "$_id", messages: {$push: "$messages"}}}
-    ])
+      { $match: { _id: userId } },
+      { $unwind: "$messages" },
+      { $sort: { "messages.createdAt": -1 } },
+      { $group: { _id: "$_id", messages: { $push: "$messages" } } }
+        ]).exec();
     if(!userWithMessages || userWithMessages.length === 0) {
       return Response.json(
         {
