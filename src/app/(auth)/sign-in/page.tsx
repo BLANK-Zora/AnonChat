@@ -116,7 +116,7 @@ const Page = () => {
                   Please wait...
                 </>
               ) : (
-                "Sign Ip"
+                "Sign In"
               )}
             </Button>
           </form>
