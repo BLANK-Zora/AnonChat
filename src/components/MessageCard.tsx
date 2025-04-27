@@ -24,6 +24,7 @@ import { X } from "lucide-react";
 import { Message } from "@/model/User";
 import { toast } from "sonner";
 import axios from "axios";
+import { ApiResponse } from "@/types/apiResponse";
 
 type MessageCardProps = {
   message: Message;
@@ -32,10 +33,11 @@ type MessageCardProps = {
 
 const MessageCard = ({ message, onMessageDelete }: MessageCardProps) => {
   const handleDeleteConfirm = async () => {
-    const response = await axios.delete(
-      `/api/delete-message/${message._id}`
-    );
 
+    const response = await axios
+            .post<ApiResponse>("/api/delete-message", {
+              messageId: message._id,
+            })
     toast.success(response.data.message, {
       description: "Message deleted successfully",
       duration: 2000,
