@@ -5,7 +5,10 @@ import mongoose from "mongoose";
 
 export async function GET(_request: Request, {params}: { params: { username: string } }) {
     await dbConnect();
-    const {username} = await params;
+    
+    // Remove the await from params since it's not a Promise
+    const {username} = params;
+    
     const user = await UserModel.findOne({ username });
     if (!user) {
         return Response.json(
@@ -16,6 +19,8 @@ export async function GET(_request: Request, {params}: { params: { username: str
             { status: 404 }
           );
     }
+    
+    // Rest of your code looks good
     const userId = new mongoose.Types.ObjectId(String(user._id));
     try {
         const userWithReplies = await UserModel.aggregate([
