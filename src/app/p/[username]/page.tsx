@@ -47,7 +47,7 @@ const Page = () => {
         setIsLoading(false);
       }
     },
-    [username]
+    [username , setIsLoading, setMessages]
   );
 
   useEffect(() => {
