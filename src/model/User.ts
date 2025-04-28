@@ -11,6 +11,18 @@ const MessageSchema: Schema<Message> = new Schema({
     createAt: { type: Date,required:true, default: Date.now }
 })
 
+
+export interface Reply extends Document {
+    originalcontent:  string;
+    replycontent:  string;
+    createAt: Date;
+}
+
+const ReplySchema: Schema<Reply> = new Schema({
+    originalcontent: { type: String, required: true },
+    replycontent: { type: String, required: true },
+    createAt: { type: Date,required:true, default: Date.now }
+})
 export interface User extends Document {
     username : string;
     email : string;
@@ -20,6 +32,7 @@ export interface User extends Document {
     isVerified: boolean;
     isAcceptingMessage: boolean;
     messages: Message[];
+    replies: Reply[];
 }
 
 const UserSchema: Schema<User> = new Schema({
@@ -30,7 +43,8 @@ const UserSchema: Schema<User> = new Schema({
     verifyCodeExpire: { type: Date, required: true},
     isVerified: { type: Boolean, default: false },
     isAcceptingMessage: { type: Boolean, default: true },
-    messages: [MessageSchema]
+    messages: [MessageSchema],
+    replies: [ReplySchema]
 })
 
 const UserModel =  mongoose.models.User as mongoose.Model<User> ||mongoose.model<User>('User', UserSchema) ; // for nextjs hot reload

@@ -163,18 +163,39 @@ const Page = () => {
           closeButton: true,
         });
       });
+      
+  };
+  const copyPublicUrl = () => {
+    if (!session?.user?.username) return;
+    
+    const baseUrl = `${window.location.protocol}//${window.location.host}`;
+    const publicUrl = `${baseUrl}/p/${session.user.username}`;
+    
+    navigator.clipboard
+      .writeText(publicUrl)
+      .then(() => {
+        toast.success("URL copied to clipboard", {
+          duration: 2000,
+          richColors: true,
+          closeButton: true,
+        });
+      })
+      .catch((error) => {
+        console.error("Error copying URL", error);
+        toast.error("Error copying URL", {
+          duration: 2000,
+          richColors: true,
+          closeButton: true,
+        });
+      });
+      
   };
 
-  // Handle loading and unauthenticated states
   if (status === "loading") {
     return <div className="p-6 text-center">Loading...</div>;
   }
 
-  // if (status === "unauthenticated") {
-  //   return <div className="p-6 text-center">Please Login</div>;
-  // }
-
-  // Only render the main content if authenticated
+ 
   const { username } = session.user;
   const baseUrl = `${window.location.protocol}//${window.location.host}`;
   const profileUrl = `${baseUrl}/u/${username}`;
@@ -192,6 +213,9 @@ const Page = () => {
             className="input input-borded w-full p-2 mr-2"
           />
           <Button onClick={copyProfileUrl}>Copy</Button>
+        </div>
+        <div className="flex items-center">
+          <Button onClick={copyPublicUrl}>Replies Page Link</Button>
         </div>
       </div>
 
@@ -229,6 +253,7 @@ const Page = () => {
             <MessageCard
               key={message.id}
               message={message}
+              username = {username}
               onMessageDelete={handleDeleteMessage}
             />
           ))
