@@ -58,10 +58,8 @@ export async function POST(request: Request) {
   }
 }
 
-export async function GET(request: Request) {
+export async function GET() {
   await dbConnect();
-  const req = await request.json();
-  console.log(req._id);
   const session = await getServerSession(authOptions);
   const user: User = session?.user;
   try {
