@@ -3,7 +3,7 @@ import dbConnect from "@/lib/dbConnect";
 import UserModel from "@/model/User";
 import mongoose from "mongoose";
 
-export async function GET(request: Request, {params}: { params: { username: string } }) {
+export async function GET(_request: Request, {params}: { params: { username: string } }) {
     await dbConnect();
     const {username} = await params;
     const user = await UserModel.findOne({ username });
