@@ -48,7 +48,7 @@ export async function GET(
     return Response.json(
       {
         success: true,
-        replies: userWithReplies[0].replies,
+        replies: userWithReplies[0].replies.reverse(),
         message: "Messages fetched successfully",
       },
       { status: 200 }

@@ -90,15 +90,16 @@ const Page = () => {
         }
       } catch (error) {
         const axiosError = error as AxiosError<ApiResponse>;
-        toast.error(
-          axiosError.response?.data.message ||
-            "Error fetching accept message status",
-          {
-            duration: 1000,
-            richColors: true,
-            closeButton: true,
-          }
-        );
+        console.error("Error fetching messages:", axiosError);
+        // toast.error(
+        //   axiosError.response?.data.message ||
+        //     "Error fetching accept message status",
+        //   {
+        //     duration: 1000,
+        //     richColors: true,
+        //     closeButton: true,
+        //   }
+        // );
       } finally {
         setIsLoading(false);
       }

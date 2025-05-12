@@ -49,7 +49,7 @@ const Page = () => {
           }
         } catch (error) {
           console.error("Error fetching replies:", error);
-          toast.error("Failed to fetch messages");
+          //toast.error("Failed to fetch messages");
         } finally {
           setIsLoading(false);
         }

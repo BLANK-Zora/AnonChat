@@ -39,13 +39,13 @@ export async function GET() {
       );
     }
     return Response.json(
-        {
-          success: false,
-          messages: userWithMessages[0].messages,
-          message: "Messages fetched successfully",
-        },
-        { status: 200 }
-      );
+      {
+        success: true,
+        messages: userWithMessages[0].messages.reverse(),
+        message: "Messages fetched successfully",
+      },
+      { status: 200 }
+          );
   } catch (error) {
     console.log("Error in getting messages", error);
     return Response.json(
